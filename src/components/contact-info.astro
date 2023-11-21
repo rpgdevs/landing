@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon";
+import type { ContactItem } from "~/types";
+
+export interface Props {
+  items: Array<ContactItem>;
+}
+
+const { items } = Astro.props;
+---
+
+<div class="w-full max-w-6xl space-y-2">
+  <div class="relative px-6 pb-4 pt-8">
+    <ul class="sm:grid-cols-3 md:grid-cols-6">
+      {
+        items.map((item) => (
+          <li>
+            <a class="flex items-center gap-2" href={item.url}>
+              <Icon class="h-8" name={item.icon} />
+              <span>{item.title}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

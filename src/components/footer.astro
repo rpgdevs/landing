@@ -1,0 +1,29 @@
+---
+import { Icon } from "astro-icon";
+import HeroImage from "~/components/hero-image.astro";
+import ContactInfo from "~/components/contact-info.astro";
+import type { ContactItem } from "~/types";
+
+const contactPlatforms: Array<ContactItem> = [
+  {
+    title: "gabo@rpgdevs.com",
+    icon: "mdi:email",
+    url: "mailto:gabo@rpgdevs.com",
+  },
+  {
+    title: "(+1) 786-782-5080",
+    icon: "mdi:phone",
+    url: "tel:+573016666666",
+  },
+];
+---
+
+<footer class="relative flex h-64 items-center justify-center">
+  <div class="absolute inset-0 overflow-hidden opacity-40">
+    <HeroImage />
+  </div>
+  <div>
+    <h2 class="mb-4 font-bold text-3xl">¿Quieres saber más?</h2>
+    <ContactInfo items={contactPlatforms} />
+  </div>
+</footer>

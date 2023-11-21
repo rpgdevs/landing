@@ -1,0 +1,42 @@
+---
+import CompatibilityList from "~/components/compatibility-list.astro";
+import ContentSection from "~/components/content-section.astro";
+import type { RPGBenefit } from "~/types";
+
+const descriptions: Array<RPGBenefit> = [
+  {
+    title: "1. Experiencia Innovadora",
+    description:
+      "Innovamos constantemente, brindando soluciones digitales que superan expectativas y transforman la experiencia empresarial.",
+  },
+  {
+    title: "2. Enfoque Centrado en el Cliente",
+    description:
+      "Priorizamos sus necesidades. Un enfoque personalizado garantiza que cada solución impulse el éxito de su negocio.",
+  },
+  {
+    title: "3. Rendimiento Probado",
+    description:
+      "Nuestro historial de éxitos demuestra nuestra capacidad para generar resultados tangibles y sostenibles para nuestros clientes.",
+  },
+  {
+    title: "4. Agilidad y Adaptabilidad",
+    description:
+      "Respondemos rápidamente a las cambiantes demandas del mercado, asegurando que su empresa siempre esté un paso adelante.",
+  },
+  {
+    title: "5. Compromiso con la Excelencia",
+    description:
+      "Nos esforzamos por la excelencia en cada aspecto, desde la implementación hasta el soporte continuo, garantizando su satisfacción duradera.",
+  },
+];
+---
+
+<ContentSection title="¿Por que RPG?" id="compatibility">
+  <Fragment slot="lead">
+    Nos destacamos por ofrecer <span class="text-primary"
+      >soluciones digitales excepcionales</span
+    > que van más allá.
+  </Fragment>
+  <CompatibilityList items={descriptions} />
+</ContentSection>
