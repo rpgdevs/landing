@@ -19,13 +19,27 @@ jobs:
       - run: npm i
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
-  deploy:
-    needs: build
+  generate-website:
+    name: Generate website
+    needs: node-setup
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/node-cache
+        id: cache-node-modules
+        with:
+          node-version: "lts/*"
+
+      - name: Generate website
+        id: build_website
+        if: steps.cache-node-modules.outcome == 'success'
+        env:
+          GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+        run: npm run build
+
+      - name: 🚀 Deploy to GitHub Pages
+        if: steps.build_website.outcome == 'success'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
