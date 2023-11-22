@@ -34,7 +34,7 @@ jobs:
         id: build_website
         if: steps.cache-node-modules.outcome == 'success'
         env:
-          GH_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         run: npm run build
 
       - name: 🚀 Deploy to GitHub Pages
