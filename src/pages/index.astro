@@ -9,8 +9,9 @@ import Splash from "~/components/splash.astro";
 import "~/styles/index.css";
 
 const { generator, site } = Astro;
-const image = new URL("social.jpg", site);
-const description = "RPG";
+const image = new URL("social.png", site);
+const description =
+  "RPG es una fábrica de software que ayuda a empresas con su transformación digital.";
 ---
 
 <!doctype html>
@@ -21,11 +22,11 @@ const description = "RPG";
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="generator" content={generator} />
 
-    <title>Astro Landing Page</title>
+    <title>RPG | Software factory</title>
     <meta name="description" content={description} />
 
     <!-- social media -->
-    <meta property="og:title" content="Astro" />
+    <meta property="og:title" content="RPG | Software factory" />
     <meta property="og:type" content="website" />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />

@@ -17,7 +17,7 @@ const { items } = Astro.props;
           <li>
             <a class="flex items-center gap-2" href={item.url}>
               <Icon class="h-8" name={item.icon} />
-              <span>{item.title}</span>
+              <span class="p-2 font-mono text-xl">{item.title}</span>
             </a>
           </li>
         ))
