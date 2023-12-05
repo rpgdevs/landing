@@ -38,16 +38,16 @@ const features: Array<FeatureItem> = [
 
 <ContentSection title="Servicios" id="features">
   <Fragment slot="lead">
-    Ofrecemos servicios <span class="text-primary">personalizados</span>.
+    Ofrecemos servicios <span class="text-primary">personalizados.</span>
   </Fragment>
   <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     {
       features.map(({ title, description, icon }) => (
         <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
-          <div class="h-16 w-16 rounded-full border-2 border-current p-3">
+          <aside class="h-16 w-16 rounded-full border-2 border-current p-3">
             <Icon name={icon} />
-          </div>
-          <p class="text-center font-extrabold text-xl">{title}</p>
+          </aside>
+          <header class="text-center font-extrabold text-xl">{title}</header>
           <p class="text-center text-offset text-sm">{description}</p>
         </li>
       ))

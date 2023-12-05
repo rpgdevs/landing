@@ -9,13 +9,15 @@ import ContentSection from "~/components/content-section.astro";
     Impulsamos el crecimiento de su negocio con
     <span class="text-primary">soluciones digitales</span> innovadoras.
   </Fragment>
-  <div class="grid grid-cols-1 gap-1 sm:grid-cols-1">
-    <a
-      href="https://calendly.com/rpgdevs/"
-      class="flex items-center justify-center gap-3 border-2 border-current px-6 py-4"
-    >
-      <Icon pack="mdi" name="calendar" class="h-8" />
-      <span>Agende una cita</span>
-    </a>
-  </div>
+  <a
+    href="https://calendly.com/rpgdevs/"
+    target="_blank"
+    
+    class="flex items-center justify-center gap-3 border-2 border-current px-6 py-4"
+  >
+  <!-- This would be ideal but we want to take track how many come throguht the page -->
+  <!-- rel="noopener noreferrer" -->
+    <Icon pack="mdi" name="calendar" class="h-8" />
+    <span>Agende una cita</span>
+  </a>
 </ContentSection>

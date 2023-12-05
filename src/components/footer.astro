@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon";
 import HeroImage from "~/components/hero-image.astro";
 import ContactInfo from "~/components/contact-info.astro";
 import type { ContactItem } from "~/types";
@@ -19,11 +18,11 @@ const contactPlatforms: Array<ContactItem> = [
 ---
 
 <footer class="relative flex h-64 items-center justify-center">
-  <div class="absolute inset-0 overflow-hidden opacity-40">
+  <aside class="absolute inset-0 overflow-hidden opacity-40">
     <HeroImage />
-  </div>
-  <div>
+  </aside>
+  <section>
     <h2 class="mb-4 font-bold text-4xl">¿Quieres saber más?</h2>
     <ContactInfo items={contactPlatforms} />
-  </div>
+  </section>
 </footer>

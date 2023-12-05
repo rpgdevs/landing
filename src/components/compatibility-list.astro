@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon";
 import type { RPGBenefit } from "~/types";
 
 export interface Props {
@@ -9,23 +8,21 @@ export interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="w-full max-w-6xl space-y-2">
+<article class="w-full max-w-6xl space-y-2">
   <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     {
       items.map((item) => (
-        <>
-          <div class="relative m-4 border border-default bg-offset px-6 pb-4 pt-8">
-            <h3 class="absolute left-4 top-0 -translate-y-1/2 rounded-full border border-current bg-default px-4 py-1 uppercase tracking-tight text-xs">
-              {item.title}
-            </h3>
-            <li>
-              <a class="flex flex-col items-center gap-2">
-                <span>{item.description}</span>
-              </a>
-            </li>
-          </div>
-        </>
+        <li class="relative m-4 border border-default bg-offset px-6 pb-4 pt-8">
+          <h3 class="absolute left-4 top-0 -translate-y-1/2 rounded-full border border-current bg-default px-4 py-1 uppercase tracking-tight text-xs">
+            {item.title}
+          </h3>
+          <p>
+            <a class="flex flex-col items-center gap-2">
+              <span>{item.description}</span>
+            </a>
+          </p>
+        </li>
       ))
     }
   </ul>
-</div>
+</article>

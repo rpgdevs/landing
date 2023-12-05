@@ -18,18 +18,27 @@ const description =
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
   <head>
     <meta charset="utf-8" />
+    <!-- Codification: Necessary for emojis and spanish -->
     <meta name="viewport" content="width=device-width" />
+    <!-- Make width the same as the screen | necessary for mobile -->
+    <meta name="robots" content="index, follow" />
+    <!-- Robots: Index this page and follow the links -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="generator" content={generator} />
 
     <title>RPG | Software factory</title>
     <meta name="description" content={description} />
 
+    <!-- Make available once english is ready -->
+    <!-- <link rel="alternate" href="https://www.rpgdevs.com/en" hreflang="en-us" /> -->
+    <link rel="canonical" href="https://www.rpgdevs.com" />
+
     <!-- social media -->
     <meta property="og:title" content="RPG | Software factory" />
-    <meta property="og:type" content="website" />
     <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
     <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content="RPG Software factory logo" />
     <meta property="og:url" content={site} />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -62,11 +71,11 @@ const description =
   >
     <Header />
     <Splash />
-    <div class="space-y-24 px-8 py-32">
+    <main class="space-y-24 px-8 py-32">
       <Intro />
       <Features />
       <Compatibility />
-    </div>
+    </main>
     <Footer />
   </body>
 </html>
