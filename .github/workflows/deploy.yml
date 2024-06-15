@@ -7,39 +7,28 @@ concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  node-setup:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/node-cache
-        id: cache-node-modules
-        with:
-          node-version: "lts/*"
-      - run: npm i
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
-  generate-website:
-    name: Generate website
-    needs: node-setup
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+      - name: Install, build, and upload your site
+        uses: withastro/action@v2
+
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/node-cache
-        id: cache-node-modules
-        with:
-          node-version: "lts/*"
-
-      - name: Generate website
-        id: build_website
-        if: steps.cache-node-modules.outcome == 'success'
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        run: npm run build
-
-      - name: 🚀 Deploy to GitHub Pages
-        if: steps.build_website.outcome == 'success'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./dist
+      - name: Deploy to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v4
