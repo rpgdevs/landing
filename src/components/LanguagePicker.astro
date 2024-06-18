@@ -1,0 +1,36 @@
+
+    <div>
+    <ul>
+        <li>
+            <a href="https://www.rpgdevs.com/" onclick="changeLanguage('es')" >
+            <span id="en-link" class="text-sm">Español</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.rpgdevs.com/en" onclick="changeLanguage('en')">
+            <span id="es-link" class="text-sm">English</span>
+            </a>
+        </li>
+    </ul>
+    </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function changeLanguage(lang: string) {
+        var esLink = document.getElementById('es-link');
+        var enLink = document.getElementById('en-link');
+  
+        if (esLink && enLink) {
+          esLink.style.display = lang === 'es' ? 'inline' : 'none';
+          enLink.style.display = lang === 'en' ? 'inline' : 'none';
+        }
+      }
+  
+      // Obtener el idioma actual de la URL 
+      const currentLang = window.location.pathname === '/en' ? 'en' : 'es';
+  
+      // Establecer el idioma actual al cargar la página
+      changeLanguage(currentLang);
+    });
+  </script>
