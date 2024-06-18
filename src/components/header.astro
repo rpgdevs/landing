@@ -36,12 +36,12 @@ const URL = Astro.url.origin
       <nav>
         <ul>
           <li>
-            <a href={URL} onclick="changeLanguage('es')">
+            <a href=`www.${URL}` onclick="changeLanguage('es')">
               <span id="en-link" class="text-sm">Español</span>
             </a>
           </li>
           <li>
-            <a href=`${URL}/en` onclick="changeLanguage('en')">
+            <a href=`www.${URL}/en` onclick="changeLanguage('en')">
               <span id="es-link" class="text-sm">English</span>
             </a>
           </li>
