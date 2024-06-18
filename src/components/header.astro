@@ -18,7 +18,7 @@ const navItemsEngl: Array<NavItem> = [
 
 const items = currentLocale == 'es' ? navItemsSpan : navItemsEngl;
 
-const URL = Astro.url.origin
+/*const URL = Astro.url.origin*/
 
 ---
 
@@ -36,12 +36,12 @@ const URL = Astro.url.origin
       <nav>
         <ul>
           <li>
-            <a href=`www.${URL}` onclick="changeLanguage('es')">
+            <a href="https://www.rpgdevs.com/" onclick="changeLanguage('es')">
               <span id="en-link" class="text-sm">Español</span>
             </a>
           </li>
           <li>
-            <a href=`www.${URL}/en` onclick="changeLanguage('en')">
+            <a href="https://www.rpgdevs.com/en" onclick="changeLanguage('en')">
               <span id="es-link" class="text-sm">English</span>
             </a>
           </li>
