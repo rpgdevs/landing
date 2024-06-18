@@ -1,22 +1,27 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from 'astro-icon/components';
 import ContentSection from "~/components/content-section.astro";
 import type { FeatureItem } from "~/types";
+import { getI18N } from "~/i18n";
 
-const features: Array<FeatureItem> = [
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+
+const featuresSpanish: Array<FeatureItem> = [
   {
-    title: "Consultoria",
+    title: "Consultoría",
     description:
-      "Asesoría comercial y de ingeniería, inteligencia de negocios ,y consultoría Transformación digital",
+      "Asesoría comercial y de ingeniería, inteligencia de negocios , consultoría Transformación digital, Automatización , e Integraciones",
     icon: "mdi:handshake",
   },
   {
     title: "Desarollo Software",
-    description: "Desarrollo backend, web, mobile y IoT",
+    description: 
+      "Desarrollo backend, web, mobile y IoT",
     icon: "mdi:devices",
   },
   {
-    title: "Implementacion",
+    title: "Implementación",
     description:
       "Instalación de tecnología, configuración de tecnología y soporte técnico",
     icon: "mdi:cogs",
@@ -34,18 +39,40 @@ const features: Array<FeatureItem> = [
     icon: "mdi:account-multiple-check-outline",
   },
 ];
+const featuresEnglish: Array<FeatureItem> = [
+  {
+    title: "Consulting services",
+    description:
+      "Business growth and engineering, Business Intelligence, Digital Transformation, Automatization, and Integration",
+    icon: "mdi:handshake",
+  },
+  {
+    title: "Software Development",
+    description: 
+      "Backend, Web, Mobile and IoT",
+    icon: "mdi:devices",
+  },
+  {
+    title: "Implementation",
+    description:
+      "Technology installing, configuration, and support",
+    icon: "mdi:cogs",
+  },
+];
+
+const items = currentLocale == 'es' ? featuresSpanish : featuresEnglish;
 ---
 
-<ContentSection title="Servicios" id="features">
+<ContentSection title={i18n.Features.title} id="features">
   <Fragment slot="lead">
-    Ofrecemos servicios <span class="text-primary">personalizados.</span>
+    {i18n.Features.description}<span class="text-primary"> {i18n.Features.description2}</span>
   </Fragment>
   <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     {
-      features.map(({ title, description, icon }) => (
+      items.map(({ title, description, icon }) => (
         <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
           <aside class="h-16 w-16 rounded-full border-2 border-current p-3">
-            <Icon name={icon} />
+            <Icon class="w-9 h-9" name={icon} />
           </aside>
           <header class="text-center font-extrabold text-xl">{title}</header>
           <p class="text-center text-offset text-sm">{description}</p>

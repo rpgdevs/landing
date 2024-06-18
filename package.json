@@ -14,10 +14,11 @@
   },
   "devDependencies": {
     "@astrojs/tailwind": "^5.0.2",
+    "@iconify-json/mdi": "^1.1.66",
     "@types/micromodal": "^0.3.3",
     "@types/swiper": "^6.0.0",
-    "astro": "^3.3.0",
-    "astro-icon": "^0.8.1",
+    "astro": "^4.4.0",
+    "astro-icon": "^1.1.0",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.0",
     "prettier-plugin-tailwindcss": "^0.5.6",
@@ -27,6 +28,8 @@
   "dependencies": {
     "@astrojs/react": "^3.4.0",
     "@fontsource-variable/inter": "^5.0.13",
+    "@mdi/font": "^7.4.47",
+    "astro-i18next": "^1.0.0-beta.21",
     "micromodal": "^0.4.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

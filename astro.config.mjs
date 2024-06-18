@@ -1,6 +1,8 @@
 import tailwind from "@astrojs/tailwind";
 import react from '@astrojs/react';
 import { defineConfig } from "astro/config";
+import icon from "astro-icon";
+import astroI18next from "astro-i18next";
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,7 +10,19 @@ export default defineConfig({
   integrations: [
     tailwind(),
     react(),
+    astroI18next(),
+    icon()
   ],
+  i18n: {
+    defaultLocale: 'es',
+    locales: [ 'es', 'en' ],
+    routing: {
+      prefixDefaultLocale: false
+    },
+    fallback: {
+      en: 'es'
+    }
+  },
   vite: {
     ssr: {
       external: ["svgo"],

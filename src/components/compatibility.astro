@@ -2,8 +2,13 @@
 import CompatibilityList from "~/components/compatibility-list.astro";
 import ContentSection from "~/components/content-section.astro";
 import type { RPGBenefit } from "~/types";
+import { getI18N } from "~/i18n";
 
-const descriptions: Array<RPGBenefit> = [
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+
+const descriptionsSpanish: Array<RPGBenefit> =
+  [
   {
     title: "1. Experiencia Innovadora",
     description:
@@ -30,13 +35,45 @@ const descriptions: Array<RPGBenefit> = [
       "Nos esforzamos por la excelencia en cada aspecto, desde la implementación hasta el soporte continuo, garantizando su satisfacción duradera.",
   },
 ];
+
+const descriptionsEnglish: Array<RPGBenefit> =
+  [
+  {
+    title: "1. EXPERIENCE INNOVATING ",
+    description:
+      "We are constantly innovating to deliver digital solutions that exceed expectations and transform the working experience..",
+  },
+  {
+    title: "2. CUSTOMER DRIVEN",
+    description:
+      "Your needs are our top priority, we aim to have you as a long-lasting business partner. Your success will determine ours.",
+  },
+  {
+    title: "3. PROVEN EFFICIENCY",
+    description:
+      "Our success history proves our capability to deliver sustainable and opportune solutions.",
+  },
+  {
+    title: "4. AGILE AND ADAPTABLE",
+    description:
+      "We adapt quickly to changes during the projects; this allows us to deliver the proper solution in time.",
+  },
+  {
+    title: "5. COMPROMISED WITH EXCELENCE",
+    description:
+      "We go the extra mile from development to support in order to ensure your satisfaction.",
+  },
+];
+
+const items = currentLocale == 'es' ? descriptionsSpanish : descriptionsEnglish;
+
 ---
 
-<ContentSection title="¿Por que RPG?" id="compatibility">
+<ContentSection title={i18n.Compatibility.title} id="compatibility">
   <Fragment slot="lead">
-    Nos destacamos por ofrecer <span class="text-primary"
-      >soluciones digitales excepcionales</span
-    > que van más allá.
+    {i18n.Compatibility.description} <span class="text-primary"
+      > {i18n.Compatibility.description2}</span
+    > {i18n.Compatibility.description3}
   </Fragment>
-  <CompatibilityList items={descriptions} />
+  <CompatibilityList items={items} />
 </ContentSection>

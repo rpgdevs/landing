@@ -2,8 +2,29 @@
 import HeroImage from "~/components/hero-image.astro";
 import ContactInfo from "~/components/contact-info.astro";
 import type { ContactItem } from "~/types";
+import { getI18N } from "~/i18n";
 
-const contactPlatforms: Array<ContactItem> = [
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+
+const contactPlatformsSpani: Array<ContactItem> = [
+  {
+    title: "gabo@rpgdevs.com",
+    icon: "mdi:email",
+    url: "mailto:gabo@rpgdevs.com",
+  },
+  {
+    title: "(+1) 786-782-5080",
+    icon: "mdi:whatsapp",
+    url: "https://api.whatsapp.com/send?phone=17867825080",
+  },
+  {
+    title: "(+51) 963 746 349",
+    icon: "mdi:phone",
+    url: "tel:+51963746349",
+  },
+];
+const contactPlatformsEngli: Array<ContactItem> = [
   {
     title: "gabo@rpgdevs.com",
     icon: "mdi:email",
@@ -12,17 +33,22 @@ const contactPlatforms: Array<ContactItem> = [
   {
     title: "(+1) 786-782-5080",
     icon: "mdi:phone",
-    url: "tel:+573016666666",
+    url: "tel:+17867825080",
   },
 ];
+
+const items = currentLocale == 'es' ? contactPlatformsSpani: contactPlatformsEngli;
+
 ---
 
-<footer class="relative flex h-64 items-center justify-center">
-  <aside class="absolute inset-0 overflow-hidden opacity-40">
+<footer class="relative flex h-75 items-center justify-center">
+  <div class="absolute inset-0 z-0 overflow-hidden opacity-40">
     <HeroImage />
-  </aside>
-  <section>
-    <h2 class="mb-4 font-bold text-4xl">¿Quieres saber más?</h2>
-    <ContactInfo items={contactPlatforms} />
+  </div>
+  <section class="relative z-10">
+    <h2 class="relative z-10 mb-4 font-bold text-4xl">{i18n.Footer.title}</h2>
+    <ContactInfo items={items}/>
   </section>
 </footer>
+
+

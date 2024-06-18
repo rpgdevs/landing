@@ -1,11 +1,11 @@
 ---
-import { Image } from "astro:assets";
-import logoImage from "~/assets/logo-white.png";
 import HeroImage from "~/components/hero-image.astro";
 import Starfield from "~/components/starfield.astro";
+import { getI18N } from "~/i18n";
 
-const widths = [450, 800];
-const sizes = "(min-width: 640px) 42vw, 67vw";
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+
 ---
 
 <section class="relative h-full bg-black">
@@ -13,29 +13,14 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
   <aside id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
     <HeroImage />
   </aside>
-  <article class="relative grid h-full place-items-center sm:grid-cols-2">
+    <article class="relative flex w-full h-full justify-center items-center flex-col lg:flex-row">
     <h2
-      class="gradient-text flex flex-col gap-2 self-end text-center font-extrabold tracking-tighter text-5xl sm:gap-4 sm:self-auto sm:justify-self-end"
-    >
-      Transforme su Futuro
-      <br />Empresarial
-      <br /> Descubra Nuestro Enfoque
-      <br /> Innovador
+      class="gradient-text flex flex-col lg:w-[100vh] px-20 gap-2 self-center text-center font-extrabold tracking-tighter text-5xl sm:gap-4 sm:self-auto sm:justify-self-center"
+    > {i18n.splash.title}
     </h2>
-    <div
-      role="banner"
-      id="logo"
-      class="w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start"
-    >
-      <Image
-        class="h-full w-full object-cover"
-        src={logoImage}
-        widths={widths}
-        sizes={sizes}
-        loading="eager"
-        title="RPG Logo"
-        alt="RPG Logo"
-      />
+    <div class="flex flex-col items-center p-10 lg:px-0" >
+      <img src="LogoRPGWhite.png" style="height: 250px; width: auto;" class="lg:p-0 p-10 mb-2 object-scale-down" alt="Logo RPG">
+      <img src="logo-white.png" style="height: 220px; width: auto;" class="lg:p-0 p-8 object-scale-down" alt="Logo con texto RPG">
     </div>
   </article>
 </section>

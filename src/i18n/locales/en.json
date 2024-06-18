@@ -1,0 +1,42 @@
+{
+    "site": {
+      "title": "My awesome website!",
+      "description": "Here is the description of my awesome website!"
+    },
+    
+    "splash": {
+      "title": "Transform Your Business Let’s Innovate Together!"
+    },
+  
+    "intro": {
+      "title": "PREMIUM SERVICE",
+      "description": "We empower your business growth through",
+      "description2":"innovative",
+      "description3": "digital solutions.",
+      "diary": "Get to know us Schedule a virtual appointment"
+    },
+  
+    "Features": {
+      "title": "Our Services",
+      "description": "Custom detail-oriented",
+      "description2":"solutions"
+    },
+  
+    "Compatibility": {
+      "title": "Why RPG?",
+      "description": "We outstand for developing",
+      "description2": "exceptional digital solutions",
+      "description3": "that guarantee satisfaction."
+    },
+  
+    "Partners": {
+      "title": "Our Allies",
+      "description": "Be part of the",
+      "description2": "transformation."
+    },
+
+    "Footer": {
+      "title": "Get to know us!"
+    }
+
+  }
