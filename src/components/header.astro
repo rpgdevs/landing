@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components';
 import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
 
+
 const { currentLocale } = Astro;
 
 const navItemsSpan: Array<NavItem> = [
@@ -16,6 +17,9 @@ const navItemsEngl: Array<NavItem> = [
 ];
 
 const items = currentLocale == 'es' ? navItemsSpan : navItemsEngl;
+
+const URL = Astro.url.origin
+
 ---
 
 <header
@@ -32,12 +36,12 @@ const items = currentLocale == 'es' ? navItemsSpan : navItemsEngl;
       <nav>
         <ul>
           <li>
-            <a href="http://localhost:4321/" onclick="changeLanguage('es')">
+            <a href={URL} onclick="changeLanguage('es')">
               <span id="en-link" class="text-sm">Español</span>
             </a>
           </li>
           <li>
-            <a href="http://localhost:4321/en" onclick="changeLanguage('en')">
+            <a href=`${URL}/en` onclick="changeLanguage('en')">
               <span id="es-link" class="text-sm">English</span>
             </a>
           </li>
