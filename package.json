@@ -30,6 +30,7 @@
     "@fontsource-variable/inter": "^5.0.13",
     "@mdi/font": "^7.4.47",
     "astro-i18next": "^1.0.0-beta.21",
+    "astro-simpleanalytics-plugin": "^0.3.13",
     "micromodal": "^0.4.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
