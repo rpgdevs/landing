@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from 'astro-icon/components';
 import type { ContactItem } from "~/types";
 
 export interface Props {
@@ -14,7 +14,7 @@ const { items } = Astro.props;
     {
       items.map((item) => (
         <li>
-          <a class="flex items-center gap-2" href={item.url}>
+          <a class="flex items-center gap-2" href={item.url} target="_blank">
             <Icon class="h-8" name={item.icon} />
             <span class="p-2 font-mono text-xl">{item.title}</span>
           </a>

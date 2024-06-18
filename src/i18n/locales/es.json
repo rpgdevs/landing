@@ -1,0 +1,42 @@
+{
+    "site": {
+      "title": "My awesome website!",
+      "description": "Here is the description of my awesome website!"
+    },
+    
+    "splash": {
+      "title": "Transforme su Futuro Empresarial Descubra Nuestro Enfoque Innovador"
+    },
+  
+    "intro": {
+      "title": "SERVICIO PREMIUM",
+      "description": "Impulsamos el crecimiento de su negocio con",
+      "description2": "soluciones digitales",
+      "description3": "innovadoras.",
+      "diary": "Agende una Cita"
+    },
+  
+    "Features": {
+      "title": "Servicios",
+      "description": "Ofrecemos servicios",
+      "description2":"personalizados"
+    },
+  
+    "Compatibility": {
+      "title": "¿Por que RPG?",
+      "description": "Nos destacamos por ofrecer",
+      "description2": "soluciones digitales excepcionales",
+      "description3": "que van más allá."
+    },
+  
+    "Partners": {
+      "title": "Nuestros Aliados",
+      "description": "Se parte de la",
+      "description2": "transformación."
+    },
+
+    "Footer": {
+      "title": "¿Quieres Saber más?"
+    }
+  
+  }

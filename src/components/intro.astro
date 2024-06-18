@@ -1,13 +1,17 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from 'astro-icon/components';
 import ContentSection from "~/components/content-section.astro";
+import { getI18N } from "~/i18n";
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
-<ContentSection title="SERVICIO PREMIUM" id="intro">
-  <Icon slot="eyebrow" name="logomark" class="h-32" />
+<ContentSection title={i18n.intro.title} id="intro">
+  <Icon slot="eyebrow" name="logomark"  class="w-[130px] h-[130px]" />
   <Fragment slot="lead">
-    Impulsamos el crecimiento de su negocio con
-    <span class="text-primary">soluciones digitales</span> innovadoras.
+    {i18n.intro.description}
+    <span class="text-primary"> {i18n.intro.description2}</span> {i18n.intro.description3}
   </Fragment>
   <a
     href="https://calendly.com/rpgdevs/"
@@ -17,7 +21,7 @@ import ContentSection from "~/components/content-section.astro";
   >
   <!-- This would be ideal but we want to take track how many come throguht the page -->
   <!-- rel="noopener noreferrer" -->
-    <Icon pack="mdi" name="calendar" class="h-8" />
-    <span>Agende una cita</span>
+    <Icon name="mdi:calendar" class="h-8" />
+    <span>{i18n.intro.diary}</span>
   </a>
 </ContentSection>

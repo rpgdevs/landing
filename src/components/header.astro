@@ -1,12 +1,21 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from 'astro-icon/components';
 import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
 
-const navItems: Array<NavItem> = [
+const { currentLocale } = Astro;
+
+const navItemsSpan: Array<NavItem> = [
   { title: "Servicios", url: "#features" },
   { title: "¿Por que RPG?", url: "#compatibility" },
 ];
+
+const navItemsEngl: Array<NavItem> = [
+  { title: "Services", url: "#features" },
+  { title: "Why RPG?", url: "#compatibility" },
+];
+
+const items = currentLocale == 'es' ? navItemsSpan : navItemsEngl;
 ---
 
 <header
@@ -15,15 +24,29 @@ const navItems: Array<NavItem> = [
 >
   <a class="flex items-center gap-3 hover:!text-default" href="#">
     <h1 class="sr-only">RPG Software Factory</h1>
-    <Icon name="logomark" class="h-10" />
+    <Icon name="logomark" class="h-10"/>
     <Icon name="wordmark" class="hidden h-4 sm:block" />
   </a>
   <body>
     <article class="flex items-center gap-6">
+      <nav>
+        <ul>
+          <li>
+            <a href="http://localhost:4321/" onclick="changeLanguage('es')">
+              <span id="en-link" class="text-sm">Español</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://localhost:4321/en" onclick="changeLanguage('en')">
+              <span id="es-link" class="text-sm">English</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
       <nav class="hidden sm:block">
         <ul class="flex items-center gap-6">
           {
-            navItems.map(({ title, url }) => (
+            items.map(({ title, url }) => (
               <li>
                 <a class="text-sm" href={url}>
                   {title}
@@ -39,7 +62,7 @@ const navItems: Array<NavItem> = [
         class="btn sm:hidden"
         aria-label="Navigation"
       >
-        <Icon pack="mdi" name="menu" class="h-8" />
+        <Icon name="mdi:menu" class="h-8" />
       </button>
       <ThemeSwitcher />
     </article>
@@ -56,7 +79,7 @@ const navItems: Array<NavItem> = [
             class="btn"
             aria-label="Close navigation"
           >
-            <Icon pack="mdi" name="close" class="h-8" />
+            <Icon name="mdi:close" class="h-8" />
           </button>
         </header>
         <aside class="flex justify-center">
@@ -65,7 +88,7 @@ const navItems: Array<NavItem> = [
         <nav>
           <ul class="flex flex-col">
             {
-              navItems.map(({ title, url }) => (
+              items.map(({ title, url }) => (
                 <li>
                   <a class="block py-4 text-center text-xl" href={url}>
                     {title}
@@ -117,6 +140,26 @@ const navItems: Array<NavItem> = [
     if ((event.target as HTMLElement).tagName === "A") {
       closeMenu();
     }
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    function changeLanguage(lang: string) {
+      var esLink = document.getElementById('es-link');
+      var enLink = document.getElementById('en-link');
+
+      if (esLink && enLink) {
+        esLink.style.display = lang === 'es' ? 'inline' : 'none';
+        enLink.style.display = lang === 'en' ? 'inline' : 'none';
+      }
+    }
+
+    // Obtener el idioma actual de la URL
+    const currentLang = window.location.pathname === '/en' ? 'en' : 'es';
+
+    // Establecer el idioma actual al cargar la página
+    changeLanguage(currentLang);
   });
 </script>
 
