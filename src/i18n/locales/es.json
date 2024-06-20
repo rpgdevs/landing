@@ -28,6 +28,16 @@
       "description2": "soluciones digitales excepcionales",
       "description3": "que van más allá."
     },
+
+    "Contact": {
+      "title": "Contácto",
+      "name": "Nombre completo:",
+      "phone": "Télefono:",
+      "email": "Correo:",
+      "company": "Empresa:",
+      "message": "¿Cómo podemos ayudarte? ",
+      "button":"Enviar"
+    },
   
     "Partners": {
       "title": "Nuestros Aliados",

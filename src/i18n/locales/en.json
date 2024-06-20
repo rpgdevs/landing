@@ -28,6 +28,16 @@
       "description2": "exceptional digital solutions",
       "description3": "that guarantee satisfaction."
     },
+
+    "Contact": {
+      "title": "Contact",
+      "name": "Full name:",
+      "phone": "Phone Number:",
+      "email": "Email:",
+      "company": "Business:",
+      "message": "How can we help?",
+      "button":"Send"
+    },
   
     "Partners": {
       "title": "Our Allies",
