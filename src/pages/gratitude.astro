@@ -1,0 +1,49 @@
+---
+import "@fontsource-variable/inter";
+import "~/styles/index.css";
+import ContentSection from "~/components/content-section.astro";
+import { getI18N } from "~/i18n";
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+
+---
+
+<!doctype html>
+<html lang={currentLocale} class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Codification: Necessary for emojis and spanish -->
+    <meta name="viewport" content="width=device-width" />
+    <!-- Make width the same as the screen | necessary for mobile -->
+    <meta name="robots" content="index, follow" />
+    <!-- Robots: Index this page and follow the links -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <title>RPG | Software factory</title>
+    <!-- Make available once english is ready -->
+    <!-- <link rel="alternate" href="https://www.rpgdevs.com/en" hreflang="en-us" /> -->
+    <link rel="canonical" href="https://www.rpgdevs.com" />
+    <!-- social media -->
+    <meta property="og:title" content="RPG | Software factory" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image:alt" content="RPG Software factory logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    
+  </head>
+  <body class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white">
+    
+    <section id="gratitude" class="flex scroll-mt-24 flex-col items-center gap-4 space-y-8 px-10 py-20"> 
+        <h1 class="text-3xl gradient-text font-extrabold mb-4 text-center">{i18n.Gratitude.title}<br>{i18n.Gratitude.title2}</h1>
+        <div class="flex flex-col items-center lg:px-0" >
+            <img src="LogoRPGWhite.png" style="height: 200px; width: auto;" class="lg:p-0 p-2 mb-2 object-scale-down" alt="Logo RPG">
+            <img src="logo-white.png" style="height: 200px; width: auto;" class="lg:p-0 object-scale-down" alt="Logo con texto RPG">
+        </div>
+        <a href="/" class="bg-pink-500 text-white px-4 py-2 rounded">{i18n.Gratitude.button}</a>
+    </section>
+
+    </main>
+  </body>
+</html>
+

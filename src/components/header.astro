@@ -4,8 +4,6 @@ import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
 import LanguajePicker from "~/components/LanguagePicker.astro";
 
-
-
 const { currentLocale } = Astro;
 
 const navItemsSpan: Array<NavItem> = [
@@ -23,7 +21,6 @@ const navItemsEngl: Array<NavItem> = [
 const items = currentLocale == 'es' ? navItemsSpan : navItemsEngl;
 
 /*const URL = Astro.url.origin*/
-
 ---
 
 <header
@@ -94,7 +91,8 @@ const items = currentLocale == 'es' ? navItemsSpan : navItemsEngl;
           </ul>
         </nav>
       </div>
-    </article>
+    </article>   
+
   </body>
 </header>
 
@@ -136,6 +134,32 @@ const items = currentLocale == 'es' ? navItemsSpan : navItemsEngl;
       closeMenu();
     }
   });
+
+  const scriptURL =
+    'https://script.google.com/macros/s/AKfycbwZQwePCEmrBp8uGyTrH_pDT6RxRXQYp4Mit5U6kpI2wmqoo8BGqP1dup8FvESbHZT9sw/exec';
+
+  const form = document.getElementById('submit_form');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    form!.addEventListener('submit', (e) => {
+      console.log('FORMULARIO');
+      e.preventDefault();
+      
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form as HTMLFormElement),
+      })
+        /*.then((response) =>
+          // Este alert no se muestra solo redirige a la pagina de agradecimiento
+          alert('Thank you! your form is submitted successfully.'),
+        )*/
+        .then(() => {
+           window.location.href = '/gratitude'
+        })
+        .catch((error) => console.error('Error!', error.message));
+    });
+  });
+
 </script>
 
 <noscript>

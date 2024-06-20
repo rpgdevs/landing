@@ -10,7 +10,7 @@ export default defineConfig({
   site: "https://www.rpgdevs.com",
   base: "",
   integrations: [tailwind(), react(), astroI18next(), icon(), svelte()],
-  output:"server",
+  output: 'server',
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],

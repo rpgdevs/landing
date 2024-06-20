@@ -1,99 +1,111 @@
 ---
 import ContentSection from "~/components/content-section.astro";
 import { getI18N } from "~/i18n";
-import { google } from 'googleapis';
 
 const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 
-if (Astro.request.method === "POST") {
-  try {
-    const Fromdata = await Astro.request.formData();
-    const fullname = Fromdata.get("fullname");
-    const phoneNumber = Fromdata.get("phoneNumber");
-    const email = Fromdata.get("email");
-    const business = Fromdata.get("business");
-    const help = Fromdata.get("help");
-
-    console.log("FORMULARIO");
-    
-    await post (fullname!.toString(), phoneNumber!.toString(), email!.toString(), business!.toString(), help!.toString())
-    // Do something with the data
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-  }
-}
-
-  async function post(fullname:String, phoneNumber:String, email:String, business:String, help:String) {
-
-    const auth = new google.auth.GoogleAuth({
-        credentials: {
-            client_email: import.meta.env.GOOGLE_CLIENT_EMAIL,
-            private_key: import.meta.env.GOOGLE_PRIVATE_KEY,
-        },
-        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    });
-
-    const sheets = google.sheets({ version: 'v4', auth });
-
-    const range = 'Sheet1!A:E';
-    const valueInputOption = 'USER_ENTERED';
-
-    
-
-    console.log("IMPRESION");
-    try {
-        const response = await sheets.spreadsheets.values.append({
-            spreadsheetId: import.meta.env.SHEET_ID,
-            range: range,
-            valueInputOption: valueInputOption,
-          
-        });
-
-        console.log('Data successfully appended!', response.data);
-        return {
-            status: 200,
-            body: { success: true },
-        };
-    } catch (err) {
-        console.error('Error appending data:', err);
-    }
-}
-
 ---
+  <head>
+    <script is:inline src="https://www.google.com/recaptcha/api.js"></script>
+  </head>
 
-<ContentSection title={i18n.Contact.title} id="contactform">
-  <form 
-    class="bg-offset p-6 rounded shadow-md w-full max-w-sm"
-    id="contactForm"
-    method="POST">
-          
-    <div class="mb-4">
-      <input class="border rounded w-full py-2 px-3 text-gray-700" id="fullname" name="fullname" placeholder={i18n.Contact.name} type="text" required>
-    </div>
-  
-    <div class="mb-4">
-      <input class="border rounded w-full py-2 px-3 text-gray-700" id="phoneNumber" name="phoneNumber" type="tel" placeholder={i18n.Contact.phone} required>
-    </div>
+  <body>
 
-    <div class="mb-4">
-      <input class="border rounded w-full py-2 px-3 text-gray-700" id="email" name="email" type="email" placeholder={i18n.Contact.email} required>
-    </div>       
-
-    <div class="mb-4">
-      <input class="border rounded w-full py-2 px-3 text-gray-700" id="business" name="business" type="text" placeholder={i18n.Contact.company} required>
-    </div>
+    <ContentSection title={i18n.Contact.title} id="contactform">
+      <form
+        class="w-full max-w-sm rounded bg-offset p-6 shadow-md"
+        id="submit_form"
+        method="POST"
+      >
+        <div class="mb-4">
+          <input
+            class="w-full rounded border px-3 py-2 text-gray-700"
+            id="fullname"
+            name="fullname"
+            placeholder={i18n.Contact.name}
+            type="text"
+            required
+          />
+        </div>
     
-    <div class="mb-4">
-      <textarea class="border rounded w-full py-2 px-3 text-gray-700" id="help" name="help" rows="4" placeholder={i18n.Contact.message} required></textarea>
-    </div>
+        <div class="mb-4">
+          <input
+            class="w-full rounded border px-3 py-2 text-gray-700"
+            id="phoneNumber"
+            name="phoneNumber"
+            type="tel"
+            placeholder={i18n.Contact.phone}
+            required
+          />
+        </div>
     
-    <div class="mb-4">
-      <button class="bg-pink-500 hover:bg-pink-700 text-white py-2 px-4 rounded">
-        <span>{i18n.Contact.button}</span>
-      </button>
-    </div>
-  </form>
-</ContentSection>
+        <div class="mb-4">
+          <input
+            class="w-full rounded border px-3 py-2 text-gray-700"
+            id="email"
+            name="email"
+            type="email"
+            placeholder={i18n.Contact.email}
+            required
+          />
+        </div>
+    
+        <div class="mb-4">
+          <input
+            class="w-full rounded border px-3 py-2 text-gray-700"
+            id="business"
+            name="business"
+            type="text"
+            placeholder={i18n.Contact.company}
+            required
+          />
+        </div>
+    
+        <div class="mb-4">
+          <textarea
+            class="w-full rounded border px-3 py-2 text-gray-700"
+            id="help"
+            name="help"
+            rows="4"
+            placeholder={i18n.Contact.message}
+            required></textarea>
+        </div>
+    
+        <div class="mb-4">
+          <button
+            type="submit"
+            class="rounded bg-pink-500 px-4 py-2 text-white hover:bg-pink-700"
+          >
+            <span>{i18n.Contact.button}</span>
+          </button>
+    
+          <button class="g-recaptcha"
+          data-sitekey="COLOCAR CLAVE PUBLICA"
+          data-callback="onSubmit"
+          data-action="submit"> Click me to verify the captcha! </button>
+    
+        </div>
+      </form>
+    </ContentSection>
+
+    <script is:inline>
+      function onSubmit(token) {
+        console.log("ENVIADO CAPCHA");
+        fetch("/recaptcha", {
+          method: "POST",
+          body: JSON.stringify({ recaptcha: token })
+        })
+        .then((response) => response.json())
+        .then((gResponse) => {
+          if (gResponse.success) {
+            // Verificación del Captcha fue un éxito
+          } else {
+            // Falló la verificación del Captcha
+          }
+        })
+      }
+    </script>
+
+  </body>
+

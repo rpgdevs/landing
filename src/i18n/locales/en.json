@@ -45,6 +45,12 @@
       "description2": "transformation."
     },
 
+    "Gratitude": {
+      "title": "Thank you for your message!",
+      "title2": "We will contact you shortly",
+      "button": "Return to the Main Page"
+    },
+
     "Footer": {
       "title": "Get to know us!"
     }
