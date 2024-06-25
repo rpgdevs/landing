@@ -1,0 +1,43 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import HeaderNews from "~/components/headerNews.astro";
+import Footer from "~/components/footer.astro";
+import News from "~/components/news.astro";
+import { getI18N } from "~/i18n";
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+
+const { frontmatter } = Astro.props;
+
+const { title, description, date, categoryPrimary, categorySecondary, author, image } = frontmatter;
+---
+  <Layout title="">
+  <HeaderNews {title} {description} {date} {categoryPrimary} {categorySecondary} {author} /> 
+  <div id="content" class="flex w-full flex-col md:flex-row items-center justify-center">
+    <div class="flex flex-col items-between px-10" style="width:70% ;">
+      {image && ( <img src={image} alt={title}  class="object-cover p-10" />)}
+    </div>
+    <div class="flex flex-col items-start gap-4" style="width:10%;">
+    </div>
+  </div>
+  <div class="flex w-full flex-col md:flex-row justify-center">
+    <div class="flex flex-col items-between px-10" style="width:70% ;">
+      <h1 class="text-center font-extrabold text-2xl">{title}</h1>
+      <div class="p-10">
+        <slot/>
+      </div>
+    </div>
+    <div class="flex flex-col items-start py-10 gap-4" style="width:10%;">
+      <h2 class="max-w-xl text-center font-extrabold"> {i18n.News.category}</h2>
+      <p class="rounded-full border border-current px-2 bg-pink-600">{categoryPrimary}</p>    
+      <p class="rounded-full border border-current px-2 bg-pink-600">{categorySecondary}</p>    
+      <h2 class="max-w-xl text-center font-extrabold"> {i18n.News.author} </h2>
+      <p class="rounded-full border border-current px-2 bg-pink-600">{author}</p>      
+    </div>
+  </div>
+  <div class="p-10">
+    <News />
+  </div>
+  <Footer />
+</Layout>

@@ -8,19 +8,19 @@ const i18n = getI18N({ currentLocale });
 
 ---
 
-<section class="relative h-full bg-black">
+<section class="relative w-full h-full bg-black">
   <Starfield />
   <aside id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
     <HeroImage />
   </aside>
-    <article class="relative flex w-full h-full justify-center items-center flex-col lg:flex-row">
+    <article class="relative flex w-full h-full justify-center items-center flex-col lg:flex-row ">
     <h2
-      class="gradient-text flex flex-col lg:w-[100vh] px-20 gap-2 self-center text-center font-extrabold tracking-tighter text-5xl sm:gap-4 sm:self-auto sm:justify-self-center"
+      class="gradient-text flex flex-col lg:w-[100vh] px-10 gap-2 self-center text-center font-extrabold tracking-tighter text-4xl lg:text-5xl sm:gap-4 sm:self-auto sm:justify-self-center"
     > {i18n.splash.title}
     </h2>
-    <div class="flex flex-col items-center p-10 lg:px-0" >
-      <img src="LogoRPGWhite.png" style="height: 250px; width: auto;" class="lg:p-0 p-10 mb-2 object-scale-down" alt="Logo RPG">
-      <img src="logo-white.png" style="height: 220px; width: auto;" class="lg:p-0 p-8 object-scale-down" alt="Logo con texto RPG">
+    <div class="flex flex-col items-center lg:px-0" >
+      <img src="LogoRPGWhite.png" style="height: 250px; width: auto;" class="lg:p-0 p-8 object-scale-down" alt="Logo RPG">
+      <img src="logo-white.png" style="height: 220px; width: auto;" class="lg:p-0 px-8 object-scale-down" alt="Logo con texto RPG">
     </div>
   </article>
 </section>

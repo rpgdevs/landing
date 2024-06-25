@@ -53,6 +53,20 @@
 
     "Footer": {
       "title": "¿Quieres Saber más?"
+    },
+
+    "News": {
+      "title":"Noticias",
+      "category": "Categorías:",
+      "author": "Autor:",
+      "by":"Por:",
+      "buttonpost": "Leer más"
+    }, 
+
+    "Page404": {
+      "title": "404 - Página no encontrada",
+      "mensaje": "Lo sentimos, la página que estás buscando no existe",
+      "button": "Volver a la página principal"
     }
   
   }

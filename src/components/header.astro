@@ -9,12 +9,14 @@ const { currentLocale } = Astro;
 const navItemsSpan: Array<NavItem> = [
   { title: "Servicios", url: "#features" },
   { title: "Contácto", url: "#contactform" },
+  { title: "Noticias", url: "#news" },
   { title: "¿Por que RPG?", url: "#compatibility" },
 ];
 
 const navItemsEngl: Array<NavItem> = [
   { title: "Services", url: "#features" },
   { title: "Contact", url: "#contactForm" },
+  { title: "News", url: "#news" },
   { title: "Why RPG?", url: "#compatibility" },
 ];
 
@@ -140,25 +142,39 @@ const items = currentLocale == 'es' ? navItemsSpan : navItemsEngl;
 
   const form = document.getElementById('submit_form');
 
-  document.addEventListener('DOMContentLoaded', () => {
-    form!.addEventListener('submit', (e) => {
-      console.log('FORMULARIO');
-      e.preventDefault();
-      
-      fetch(scriptURL, {
-        method: 'POST',
-        body: new FormData(form as HTMLFormElement),
-      })
-        /*.then((response) =>
+  window.onSubmit = onSubmit;
+
+  function sendForm() {
+    fetch(scriptURL, {
+      method: 'POST',
+      body: new FormData(form as HTMLFormElement),
+    })
+      /*.then((response) =>
           // Este alert no se muestra solo redirige a la pagina de agradecimiento
           alert('Thank you! your form is submitted successfully.'),
         )*/
-        .then(() => {
-           window.location.href = '/gratitude'
-        })
-        .catch((error) => console.error('Error!', error.message));
-    });
-  });
+      .then(() => {
+        window.location.href = '/gratitude';
+      })
+      .catch((error) => console.error('Error!', error.message));
+  }
+
+    function onSubmit(token) {
+    console.log('CAPCHA', token);
+    fetch('/recaptcha', {
+      method: 'POST',
+      body: JSON.stringify({ recaptcha: token }),
+    })
+      .then((response) => response.json())
+      .then((gResponse) => {
+        if (gResponse.success) {
+          console.log('ENVIADO CAPCHA');
+          sendForm();
+        } else {
+          console.error('ERROR CAPCHA');
+        }
+      });
+  }
 
 </script>
 

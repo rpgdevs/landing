@@ -6,7 +6,7 @@ export async function POST({ request }) {
       'Content-Type': 'application/x-www-form-urlencoded'
     };
     const requestBody = new URLSearchParams({
-      secret: "COLOCAR CLAVE SECRETA",   // Esto puede ser una variable de entorno
+      secret: "CLAVE_SECRETA",   // Esto puede ser una variable de entorno
       response: data.recaptcha          // El token pasado desde el cliente
     });
   

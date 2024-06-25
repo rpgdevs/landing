@@ -1,0 +1,37 @@
+---
+// utils imports
+import { slugify, formatDate } from "~/components/js/utils";
+import { getI18N } from "~/i18n";
+
+const { frontmatter, url, tagType } = Astro.props;
+
+const Tag = tagType;
+
+const { title, date, author, image, description } = frontmatter;
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+---
+
+<article class="bg-offset p-4 rounded-lg">
+  <a href={url} aria-hidden="true" tabindex="-1">
+    {image && ( <img src={image} alt={title}  class="object-cover p-4" />)}
+  </a>
+  <div class="content">
+    <div>
+      <Tag class="font-extrabold text-xl">
+        <a href={url}>{title}</a>
+      </Tag>
+      <small>{i18n.News.by}
+        <a href={`/author/${slugify(author)}/`}>{author}</a> • {
+          formatDate(date)
+        }
+      </small>
+    </div>
+    <p class="py-4">{description}</p>   
+    <a 
+    href={url} 
+    class="flex justify-center w-full rounded-lg bg-pink-500 py-2 hover:bg-pink-700">
+    {i18n.News.buttonpost}
+    </a>
+</article>

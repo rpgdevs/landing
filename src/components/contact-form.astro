@@ -71,41 +71,19 @@ const i18n = getI18N({ currentLocale });
             placeholder={i18n.Contact.message}
             required></textarea>
         </div>
-    
-        <div class="mb-4">
-          <button
-            type="submit"
-            class="rounded bg-pink-500 px-4 py-2 text-white hover:bg-pink-700"
-          >
-            <span>{i18n.Contact.button}</span>
-          </button>
-    
-          <button class="g-recaptcha"
-          data-sitekey="COLOCAR CLAVE PUBLICA"
-          data-callback="onSubmit"
-          data-action="submit"> Click me to verify the captcha! </button>
-    
-        </div>
+     
+        <button
+        type="submit"
+        class="w-full g-recaptcha rounded bg-pink-500 px-4 py-2 text-white hover:bg-pink-700"
+        data-sitekey="6LdzwPwpAAAAAJjPBbtGg-c2xHGlj1G_PhznZlHk"
+        data-callback="onSubmit"
+        data-action="submit"
+        >
+        <span>{i18n.Contact.button}</span>
+        </button>
+      
       </form>
     </ContentSection>
-
-    <script is:inline>
-      function onSubmit(token) {
-        console.log("ENVIADO CAPCHA");
-        fetch("/recaptcha", {
-          method: "POST",
-          body: JSON.stringify({ recaptcha: token })
-        })
-        .then((response) => response.json())
-        .then((gResponse) => {
-          if (gResponse.success) {
-            // Verificación del Captcha fue un éxito
-          } else {
-            // Falló la verificación del Captcha
-          }
-        })
-      }
-    </script>
 
   </body>
 

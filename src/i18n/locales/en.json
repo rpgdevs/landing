@@ -53,6 +53,19 @@
 
     "Footer": {
       "title": "Get to know us!"
-    }
+    },
 
+    "News": {
+      "title":"News",
+      "category": "Categorys:",
+      "author": "Author:",
+      "by":"By:",
+      "buttonpost": "Read more"
+    }, 
+
+    "Page404": {
+      "title": "404 - Page not found",
+      "mensaje": "Sorry, the page you are looking for does not exist",
+      "button": "Return to the main page"
+    }
   }

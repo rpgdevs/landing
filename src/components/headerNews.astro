@@ -1,0 +1,117 @@
+---
+import { Icon } from 'astro-icon/components';
+import ThemeSwitcher from "~/components/theme-switcher.astro";
+import type { NavItem } from "~/types";
+import LanguajePicker from "~/components/LanguagePicker.astro";
+// utils imports
+import { slugify, formatDate } from "~/components/js/utils";
+import { getI18N } from "~/i18n";
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+
+const navItemsSpan: Array<NavItem> = [
+  { title: "Servicios", url: "https://www.rpgdevs.com/#features" },
+  { title: "Contácto", url: "https://www.rpgdevs.com/#contactform" },
+  { title: "Noticias", url: "https://www.rpgdevs.com/#news" },
+  { title: "¿Por que RPG?", url: "https://www.rpgdevs.com/#compatibility" },
+];
+
+const navItemsEngl: Array<NavItem> = [
+  { title: "Services", url: "https://www.rpgdevs.com/en/#features" },
+  { title: "Contact", url: "https://www.rpgdevs.com/en/#contactForm" },
+  { title: "News", url: "https://www.rpgdevs.com/en/#news" },
+  { title: "Why RPG?", url: "https://www.rpgdevs.com/en/#compatibility" },
+];
+
+const items = currentLocale == 'es' ? navItemsSpan : navItemsEngl;
+
+const { categoryPrimary, title, author, date,  } = Astro.props;
+---
+
+<section
+  id="nav"
+  class="bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
+>
+  <a class="flex items-center gap-3 hover:!text-default" href="#">
+    <h1 class="sr-only">RPG Software Factory</h1>
+    <Icon name="logomark" class="h-10"/>
+    <Icon name="wordmark" class="hidden h-4 sm:block" />
+  </a>
+  <body>
+    <article class="flex items-center gap-6">
+      <LanguajePicker /> 
+      <nav class="hidden sm:block">
+        <ul class="flex items-center gap-6">
+          {
+            items.map(({ title, url }) => (
+              <li>
+                <a class="text-sm" href={url}>
+                  {title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <button
+        id="open-nav-button"
+        type="button"
+        class="btn sm:hidden"
+        aria-label="Navigation"
+      >
+        <Icon name="mdi:menu" class="h-8" />
+      </button>
+      <ThemeSwitcher />
+    </article>
+    <article
+      id="menu-modal"
+      class="modal fixed inset-0 hidden bg-default px-8 py-4 text-default"
+      aria-hidden="true"
+    >
+      <div class="space-y-4" role="dialog" aria-modal="true">
+        <header class="text-right">
+          <button
+            id="close-nav-button"
+            type="button"
+            class="btn"
+            aria-label="Close navigation"
+          >
+            <Icon name="mdi:close" class="h-8" />
+          </button>
+        </header>
+        <aside class="flex justify-center">
+          <Icon name="logomark" class="h-16" />
+        </aside>
+        <nav>
+          <ul class="flex flex-col">
+            {
+              items.map(({ title, url }) => (
+                <li>
+                  <a class="block py-4 text-center text-xl" href={url}>
+                    {title}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </article>   
+
+  </body>
+</section>
+
+<header>
+  <div class="grid bg-gray-800 text-white text-center p-5 gap-2">
+    <small>
+      <a href={`/category/${slugify(categoryPrimary)}/`} class="badge bg-gray-700 text-white p-2 rounded ">{categoryPrimary}</a>
+    </small>
+    <h1 class="h2 text-white font-bold text-2xl">{title}</h1>
+    <p class="mt-1">
+      {i18n.News.by} <a href={`/author/${slugify(author)}/`} class="text-pink-400">{author}</a> • {
+        formatDate(date)
+      }
+    </p>
+  </div>
+</header>
